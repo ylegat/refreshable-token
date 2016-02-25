@@ -9,16 +9,16 @@ import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.ExecutorService;
 import org.junit.Test;
-import refreshable.RefreshableToken;
+import refreshable.legacy.LegacyRefreshableToken;
 
-public abstract class RefreshableTokenTest {
+public abstract class AbstractLegacyRefreshableTokenTest {
 
-    public abstract RefreshableToken<String> refreshableToken();
+    public abstract LegacyRefreshableToken<String> refreshableToken();
 
     @Test
     public void should_be_empty_by_default() throws Exception {
         // GIVEN
-        RefreshableToken<String> reference = refreshableToken();
+        LegacyRefreshableToken<String> reference = refreshableToken();
 
         // WHEN
         String token = reference.token();
@@ -30,7 +30,7 @@ public abstract class RefreshableTokenTest {
     @Test
     public void should_set_the_value_on_refresh() throws Exception {
         // GIVEN
-        RefreshableToken<String> reference = refreshableToken();
+        LegacyRefreshableToken<String> reference = refreshableToken();
         String nextToken = "nextToken";
 
         // WHEN
@@ -43,7 +43,7 @@ public abstract class RefreshableTokenTest {
     @Test
     public void should_skip_refresh_when_epoch_changes() throws Exception {
         // GIVEN
-        RefreshableToken<String> reference = refreshableToken();
+        LegacyRefreshableToken<String> reference = refreshableToken();
         ExecutorService executor = newFixedThreadPool(2);
         CyclicBarrier barrier = new CyclicBarrier(2);
         String token = "token";
@@ -75,7 +75,7 @@ public abstract class RefreshableTokenTest {
     @Test
     public void should_not_refresh_when_token_has_changed() throws InterruptedException {
         // GIVEN
-        RefreshableToken<String> reference = refreshableToken();
+        LegacyRefreshableToken<String> reference = refreshableToken();
         ExecutorService executor = newFixedThreadPool(2);
         CyclicBarrier barrier = new CyclicBarrier(2);
         String token = "token";

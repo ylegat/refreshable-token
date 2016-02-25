@@ -6,5 +6,5 @@ public interface RefreshableTokenBreakingAPI<T> {
 
     T refresh();
 
-    T refresh(String previousToken);
+    T refresh(T previousToken);
 }

@@ -2,9 +2,13 @@ package refreshable.solution;
 
 import java.util.Objects;
 import java.util.function.Supplier;
-import refreshable.RefreshableToken;
+import refreshable.legacy.LegacyRefreshableToken;
 
-public class RefreshableToken3 implements RefreshableToken<String> {
+/**
+ * This solution store inside a thread local the value of the last token read for every thread.
+ * It has a flaw though : if the new generated token has the same value than the previous one, a refresh will still be triggered.
+ */
+public class RefreshableTokenSolution2 implements LegacyRefreshableToken<String> {
 
     private final Object monitor = new Object();
 

@@ -4,10 +4,9 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.Supplier;
-import refreshable.RefreshableToken;
 
 /**
- * A holder to a reference that can be thread safely refreshed (reloaded).
+ * A safe thread holder to a reference that can be refreshed (reloaded).
  * The reference is guarded y a lock.
  * <p>
  * The reference also has an epoch counter which is incremented every time it is refreshed.
@@ -19,7 +18,7 @@ import refreshable.RefreshableToken;
  * <li>if they are different, another thread refreshed in between, so skip this refresh</li>
  * </ul>
  */
-public class RefreshableToken1 implements RefreshableToken<String> {
+public class LegacyRefreshableTokenImpl implements LegacyRefreshableToken<String> {
 
     private String value;
 

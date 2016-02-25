@@ -3,7 +3,11 @@ package refreshable.solution;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-public class RefreshableToken4 implements RefreshableTokenBreakingAPI<String> {
+/**
+ * This solution break the legacy API by asking for the previous token to be communicating when asking for a refresh.
+ * It has a flaw though : if the new generated token has the same value than the previous one, a refresh will still be triggered.
+ */
+public class RefreshableTokenSolution3 implements RefreshableTokenBreakingAPI<String> {
 
     private final Object monitor = new Object();
 
@@ -11,7 +15,7 @@ public class RefreshableToken4 implements RefreshableTokenBreakingAPI<String> {
 
     private volatile String value;
 
-    public RefreshableToken4(Supplier<String> tokenSupplier) {
+    public RefreshableTokenSolution3(Supplier<String> tokenSupplier) {
         this.tokenSupplier = tokenSupplier;
     }
 

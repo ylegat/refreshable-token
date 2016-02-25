@@ -8,14 +8,13 @@ import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.ExecutorService;
 import org.junit.Test;
-import refreshable.RefreshableToken;
 
-public class RefreshableToken1Test {
+public class LegacyRefreshableTokenImplTest {
 
     @Test
     public void should_be_empty_by_default() throws Exception {
         // GIVEN
-        RefreshableToken<String> reference = refreshableToken();
+        LegacyRefreshableToken<String> reference = refreshableToken();
 
         // WHEN
         String token = reference.token();
@@ -27,7 +26,7 @@ public class RefreshableToken1Test {
     @Test
     public void should_set_the_value_on_refresh() throws Exception {
         // GIVEN
-        RefreshableToken<String> reference = refreshableToken();
+        LegacyRefreshableToken<String> reference = refreshableToken();
         String nextToken = "nextToken";
 
         // WHEN
@@ -40,7 +39,7 @@ public class RefreshableToken1Test {
     @Test
     public void should_skip_refresh_when_epoch_changes() throws Exception {
         // GIVEN
-        RefreshableToken<String> reference = refreshableToken();
+        LegacyRefreshableToken<String> reference = refreshableToken();
         ExecutorService executor = newFixedThreadPool(2);
         CyclicBarrier barrier = new CyclicBarrier(2);
         String token = "token";
@@ -69,8 +68,8 @@ public class RefreshableToken1Test {
         assertThat(reference.token()).isSameAs(token);
     }
 
-    private RefreshableToken<String> refreshableToken() {
-        return new RefreshableToken1();
+    private LegacyRefreshableToken<String> refreshableToken() {
+        return new LegacyRefreshableTokenImpl();
     }
 
     private void quietAwait(CyclicBarrier barrier) {

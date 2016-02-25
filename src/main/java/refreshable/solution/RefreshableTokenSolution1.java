@@ -2,9 +2,12 @@ package refreshable.solution;
 
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.Supplier;
-import refreshable.RefreshableToken;
+import refreshable.legacy.LegacyRefreshableToken;
 
-public class RefreshableToken2 implements RefreshableToken<String> {
+/**
+ * This solution store inside a thread local the epoch of the last read for every thread.
+ */
+public class RefreshableTokenSolution1 implements LegacyRefreshableToken<String> {
 
     private final AtomicLong epoch = new AtomicLong();
 

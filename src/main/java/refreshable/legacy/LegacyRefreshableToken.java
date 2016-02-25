@@ -1,8 +1,8 @@
-package refreshable;
+package refreshable.legacy;
 
 import java.util.function.Supplier;
 
-public interface RefreshableToken<T> {
+public interface LegacyRefreshableToken<T> {
 
     T token();
 
